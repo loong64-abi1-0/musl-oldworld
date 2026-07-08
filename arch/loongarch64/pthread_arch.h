@@ -11,4 +11,4 @@ static inline struct pthread *__pthread_self()
 
 #define DTP_OFFSET 0
 
-#define MC_PC pc
+#define MC_PC __pc
