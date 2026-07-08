@@ -29,17 +29,17 @@ struct sigcontext {
 };
 
 typedef struct {
-	unsigned long   pc;
-	unsigned long   gregs[32];
-	unsigned int    flags;
-	unsigned int    fcsr;
-	unsigned int    vcsr;
-	unsigned long   fcc;
+	unsigned long   __pc;
+	unsigned long   __gregs[32];
+	unsigned int    __flags;
+	unsigned int    __fcsr;
+	unsigned int    __vcsr;
+	unsigned long   __fcc;
 	unsigned long   scr[4];
 	union {
                 unsigned int            val32[FPU_REG_WIDTH / 32];
                 unsigned long long      val64[FPU_REG_WIDTH / 64];
-        } fpregs[32] FPU_ALIGN;
+        } __fpregs[32] FPU_ALIGN;
 	unsigned char   reserved[4096] __attribute__((__aligned__(16)));
 } mcontext_t;
 
@@ -66,7 +66,7 @@ struct sigaltstack {
 
 typedef struct __ucontext
 {
-	unsigned long  __uc_flags;
+	unsigned long  uc_flags;
 	struct __ucontext *uc_link;
 	stack_t            uc_stack;
 	mcontext_t uc_mcontext;
